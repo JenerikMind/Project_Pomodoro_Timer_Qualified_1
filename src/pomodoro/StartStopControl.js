@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import classNames from "../utils/class-names";
 
 
-function StartStopControl({appState : {isTimerRunning}, playPause, stopTimer}){
+function StartStopControl({appState : {isTimerRunning, session}, playPause, stopTimer}){
 
 return (
     <div className="row">
@@ -35,6 +36,7 @@ return (
                 data-testid="stop"
                 title="Stop the session"
                 onClick={stopTimer}
+                disabled={session === null}
             >
                 <span className="oi oi-media-stop" />
             </button>
@@ -43,5 +45,12 @@ return (
     </div>
     );
 }
+
+StartStopControl.propTypes = {
+    appState: PropTypes.object,
+    playPause: PropTypes.func,
+    stopTimer: PropTypes.func,
+}
+
 
 export default StartStopControl;

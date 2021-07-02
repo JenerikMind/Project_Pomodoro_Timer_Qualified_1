@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { secondsToDuration } from "../utils/duration";
 
 function TimeDisplay({appState}){
@@ -11,22 +12,22 @@ function TimeDisplay({appState}){
     /**
      * @returns the correct time to display for the overall duration
      */
-    const returnCorrectTime = () => isFocusing ? secondsToDuration(appState.focus) : secondsToDuration(appState.break);
+    const returnCorrectTime = () => isFocusing() ? secondsToDuration(appState.focus) : secondsToDuration(appState.break);
 
     /**
      * @returns the amount of progress based on the values in the state
      */
     function progressValue(){
-        const maxTime = isFocusing ? appState.focus : appState.break;
+        const maxTime = isFocusing() ? appState.focus : appState.break;
         const currentTime = appState.session.timeRemaining;
         const timeLeft = maxTime - currentTime;
-        const progress = (timeLeft / maxTime) * 1000;
+        const progress = (timeLeft / maxTime) * 100;
 
         return progress;
     }
 
     return(
-        <div>
+        <>
         {/* TODO: This area should show only when there is an active focus or break - i.e. the session is running or is paused */}
         <div className="row mb-2">
           <div className="col">
@@ -49,13 +50,17 @@ function TimeDisplay({appState}){
                 aria-valuemin="0"
                 aria-valuemax="100"
                 aria-valuenow={progressValue()} // TODO: Increase aria-valuenow as elapsed time increases
-                style={{ width: progressValue() }} // TODO: Increase width % as elapsed time increases
+                style={{ width: `${progressValue()}%` }} // TODO: Increase width % as elapsed time increases
               />
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
+}
+
+TimeDisplay.propTypes = {
+    appState: PropTypes.object,
 }
 
 export default TimeDisplay;

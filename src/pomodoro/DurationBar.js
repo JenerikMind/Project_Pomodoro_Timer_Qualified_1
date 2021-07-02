@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { secondsToDuration } from "../utils/duration";
 
 function DurationBar({changeTime, appState}){
@@ -67,6 +68,11 @@ function DurationBar({changeTime, appState}){
         </div>
       </div>
     );
+}
+
+DurationBar.propTypes = {
+  changeTime: PropTypes.func,
+  appState: PropTypes.object,
 }
 
 export default DurationBar;
