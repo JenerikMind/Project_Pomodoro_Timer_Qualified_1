@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useInterval from "../utils/useInterval";
-import DurationBar from "./DurationBar";
+import DurationTimers from "./DurationTimers";
 import StartStopControl from "./StartStopControl";
 import TimeDisplay from "./TimeDisplay";
 
@@ -132,7 +132,7 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      <DurationBar changeTime={changeTime} appState={appState}/>
+      <DurationTimers changeTime={changeTime} appState={appState}/>
       <StartStopControl appState={appState} playPause={playPause} stopTimer={stopTimer}/>
       {showTimeDisplay()}
     </div>
