@@ -7,7 +7,7 @@ function TimeDisplay({appState}){
     /**
      * @returns boolean based on session label
      */
-    const isFocusing = () => appState.session?.label === "Focusing" ? true : false;
+    const isFocusing = () => appState.session.label === "Focusing" ? true : false;
 
     /**
      * @returns the correct time to display for the overall duration
@@ -33,11 +33,11 @@ function TimeDisplay({appState}){
           <div className="col">
             {/* TODO: Update message below to include current session (Focusing or On Break) total duration */}
             <h2 data-testid="session-title">
-              {appState.session?.label} for {returnCorrectTime()} minutes
+              {appState.session.label} for {returnCorrectTime()} minutes
             </h2>
             {/* TODO: Update message below correctly format the time remaining in the current session */}
             <p className="lead" data-testid="session-sub-title">
-              {secondsToDuration(appState.session?.timeRemaining)} remaining
+              {secondsToDuration(appState.session.timeRemaining)} remaining
             </p>
           </div>
         </div>

@@ -46,7 +46,7 @@ function nextSession(currentState) {
 
 function Pomodoro() {
   const initialState = {
-    "focus": 900,
+    "focus": 1500,
     "break": 300,
     "session": null,
     "isTimerRunning": false,
@@ -78,7 +78,7 @@ function Pomodoro() {
   /**
    * stops the timer by setting the "session" back to null
    */
-  function stopTimer(){ setAppState({...appState, "session": null, "isTimerRunning": false}) }
+  function stopTimer(){ setAppState(currentState => { return {...currentState, "session": null, "isTimerRunning": false} }) };
 
 
 
@@ -99,7 +99,7 @@ function Pomodoro() {
     }else{
       addedTime = addTime ? Math.min(addTimeFunc(appState.break, 60), 900) : Math.max(subtractTimeFunc(appState.break, 60), 60);
     }
-    setAppState({...appState, [timerName]: addedTime});
+    setAppState(currentState => {return {...currentState, [timerName]: addedTime }});
   }
 
 
